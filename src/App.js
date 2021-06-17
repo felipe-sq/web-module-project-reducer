@@ -6,7 +6,7 @@ import TotalDisplay from './components/TotalDisplay';
 import CalcButton from './components/CalcButton';
 
 import reducer, { initialState, calculateResult } from './reducers/index';
-import { addOne, applyNumber, changeOperation } from './actions/index';
+import { addOne, applyNumber, changeOperation, clearDisplay, setMemory } from './actions/index';
 
 function App() {
 
@@ -22,6 +22,14 @@ function App() {
 
   const changeOperator = (e) => {
     dispatch(changeOperation(e))
+  }
+
+  const clearHandler = (e) => {
+    dispatch(clearDisplay(e))
+  }
+
+  const memorySetter = (e) => {
+    dispatch(setMemory(e))
   }
 
   return (
@@ -41,7 +49,7 @@ function App() {
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
+              <CalcButton value={"M+"} onClick={memorySetter} />
               <CalcButton value={"MR"}/>
               <CalcButton value={"MC"}/>
             </div>
@@ -71,7 +79,7 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton value={"CE"} onClick={clearHandler} />
             </div>
 
           </form>
